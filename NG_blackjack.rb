@@ -1,15 +1,4 @@
 #ゲームの実行（勝敗の確認）
-# class BlackJack
-#   def judge(player, dealer)
-#     if player.score > dealer.score
-#       puts "あなたの勝ちです！"
-#     elsif player.score < dealer.score
-#       puts "ディーラーの勝ちです。"
-#     else
-#       puts "引き分けです。"
-#     end
-#   end
-
 
 class Card
   attr_reader :rank, :suit
@@ -82,7 +71,7 @@ class Player
       else
         break
       end
-    
+
     end
   end
 
