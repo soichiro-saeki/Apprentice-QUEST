@@ -59,21 +59,7 @@ class Player
     puts "#{name}'s Total: #{total}"
   end
 
-  def hit_or_stand(deck)
-    loop do
-      break if total >= 21
 
-      print "#{name}, do you want to hit or stand? (h/s): "
-      answer = gets.chomp.downcase
-      if answer == 'h'
-        draw(deck)
-        show_cards
-      else
-        break
-      end
-
-    end
-  end
 
 
 deck = Deck.new
