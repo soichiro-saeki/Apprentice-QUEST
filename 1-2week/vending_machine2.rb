@@ -1,10 +1,13 @@
-#自動販売機クラス
+# frozen_string_literal: true
+
+# 自動販売機クラス
 class VendingMachine
-   def drink_list
+  def drink_list
     puts 'sider:100円'
     puts 'coke:150円'
-   end
-   def press_button(drink)
+  end
+
+  def press_button(drink)
      @drink = drink
      case drink
      when 'coke'
