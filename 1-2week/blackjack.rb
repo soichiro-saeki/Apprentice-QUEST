@@ -2,6 +2,7 @@
 
 # ゲームクラス
 class BlackJack
+  # インスタンス作成
   def initialize
     deck = Deck.new
     player = Player.new(deck)
@@ -9,9 +10,23 @@ class BlackJack
     dealer = Dealer.new(deck)
     dealer.open_hand
     player.draw_again(deck)
+    determine_winner(player, dealer)
+  end
+
+  def determine_winner(player, dealer)
+  if player.score > 21
+    puts 'あなたはバストしました。ディーラーの勝ちです。'
+  elsif dealer.score > 21
+    puts 'ディーラーはバストしました。あなたの勝ちです。'
+  elsif player.score > dealer.score
+    puts 'あなたの勝ちです。'
+  elsif player.score < dealer.score
+    puts 'ディーラーの勝ちです。'
+  else
+    puts '引き分けです。'
+  end
   end
 end
-
 # トランプの山札を準備してシャッフルするクラス
 class Deck
   attr_reader :cards
@@ -47,11 +62,12 @@ class Player
   def open_hand
     puts "あなたの引いたカードは,#{@hand[0]}です。"
     puts "あなたの引いたカードは,#{@hand[1]}です。"
+    show_score
   end
   # 引いたカードがAの場合に1か11かを選択する
   def choose_ace_value(value)
     # valueの値を変数として1もしくは11として扱う
-    if value == 1 || value == 11
+    if [1, 11].include?(value)
       @ace_value = value
       puts "Aの値を#{value}にします。"
     else
@@ -65,18 +81,17 @@ class Player
   # スコアが21以下の場合にプレイヤーが再度引くかの選択をする
 
   def draw_again(deck)
-
-    if score <= 21
+    while score <= 21
       puts 'カードを引きますか?(y/n)'
       answer = gets.chomp
 
       if answer.downcase == 'y'
         @hand += deck.draw(1)
         puts "あなたの引いたカードは#{@hand[-1]}です。"
+        show_score
       else
         return
       end
-
     end
   end
 
@@ -84,19 +99,6 @@ class Player
     Score.calculate(@hand)
   end
 
-  # def score
-  #   score = 0
-  #   @hand.each do |card|
-  #     if card.include?('A')
-  #       score += @ace_value
-  #     elsif card.include?('J') || card.include?('Q') ||card.include?('K')
-  #       score += 10
-  #     else
-  #       score += card.split('の')[1].to_i
-  #     end
-  #   end
-  #   score
-  # end
 end
 
 # ディーラークラス
@@ -110,19 +112,20 @@ class Dealer
     puts 'ディーラーの引いた2枚目のカードはわかりません。'
   end
 
-  # def score
-  #   score = 0
-  #   @hand.each do |card|
-  #     if card.include?('A')
-  #       score += 11
-  #     elsif card.include?('J') || card.include?('Q') || card.include?('K')
-  #       score += 10
-  #     else
-  #       score += card.split('の')[1].to_i
-  #     end
-  #   end
-  #   score
-  # end
+  def score
+    Score.calculate(@hand)
+  end
+
+  def dealer_turn
+    while
+      dealer.score < 17
+      dealer.draw(deck)
+    end
+  end
+
+  def draw
+    @hand += @deck.draw(1)
+  end
 end
 
 class Score
