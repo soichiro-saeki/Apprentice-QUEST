@@ -81,18 +81,22 @@ class Player
   end
 
   def score
-    score = 0
-    @hand.each do |card|
-      if card.include?('A')
-        score += @ace_value
-      elsif card.include?('J') || card.include?('Q') ||card.include?('K')
-        score += 10
-      else
-        score += card.split('の')[1].to_i
-      end
-    end
-    score
+    Score.calculate(@hand)
   end
+
+  # def score
+  #   score = 0
+  #   @hand.each do |card|
+  #     if card.include?('A')
+  #       score += @ace_value
+  #     elsif card.include?('J') || card.include?('Q') ||card.include?('K')
+  #       score += 10
+  #     else
+  #       score += card.split('の')[1].to_i
+  #     end
+  #   end
+  #   score
+  # end
 end
 
 # ディーラークラス
@@ -106,10 +110,28 @@ class Dealer
     puts 'ディーラーの引いた2枚目のカードはわかりません。'
   end
 
-  def score
+  # def score
+  #   score = 0
+  #   @hand.each do |card|
+  #     if card.include?('A')
+  #       score += 11
+  #     elsif card.include?('J') || card.include?('Q') || card.include?('K')
+  #       score += 10
+  #     else
+  #       score += card.split('の')[1].to_i
+  #     end
+  #   end
+  #   score
+  # end
+end
+
+class Score
+  def self.calculate(hand)
     score = 0
-    @hand.each do |card|
+    aces = 0
+    hand.each do |card|
       if card.include?('A')
+        aces += 1
         score += 11
       elsif card.include?('J') || card.include?('Q') || card.include?('K')
         score += 10
@@ -117,6 +139,12 @@ class Dealer
         score += card.split('の')[1].to_i
       end
     end
+
+    while score > 21 && aces > 0
+      score -= 10
+      aces -= 1
+    end
+
     score
   end
 end
