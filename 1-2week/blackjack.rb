@@ -2,7 +2,7 @@
 
 # ゲームクラス
 class BlackJack
-  # インスタンス作成
+  # 書くclassで定義したインスタンス初期化
   def initialize
     deck = Deck.new
     player = Player.new(deck)
@@ -10,23 +10,25 @@ class BlackJack
     dealer = Dealer.new(deck)
     dealer.open_hand
     player.draw_again(deck)
-    determine_winner(player, dealer)
+    winner(player, dealer)
   end
 
-  def determine_winner(player, dealer)
-  if player.score > 21
-    puts 'あなたはバストしました。ディーラーの勝ちです。'
-  elsif dealer.score > 21
-    puts 'ディーラーはバストしました。あなたの勝ちです。'
-  elsif player.score > dealer.score
-    puts 'あなたの勝ちです。'
-  elsif player.score < dealer.score
-    puts 'ディーラーの勝ちです。'
-  else
-    puts '引き分けです。'
-  end
+  # プレイヤーとディーラーの勝敗のメソッド
+  def winner(player, dealer)
+    if player.score > 21
+      puts 'あなたはバストしました。ディーラーの勝ちです。'
+    elsif dealer.score > 21
+      puts 'ディーラーはバストしました。あなたの勝ちです。'
+    elsif player.score > dealer.score
+      puts 'あなたの勝ちです。'
+    elsif player.score < dealer.score
+      puts 'ディーラーの勝ちです。'
+    else
+      puts '引き分けです。'
+    end
   end
 end
+
 # トランプの山札を準備してシャッフルするクラス
 class Deck
   attr_reader :cards
@@ -64,16 +66,6 @@ class Player
     puts "あなたの引いたカードは,#{@hand[1]}です。"
     show_score
   end
-  # 引いたカードがAの場合に1か11かを選択する
-  def choose_ace_value(value)
-    # valueの値を変数として1もしくは11として扱う
-    if [1, 11].include?(value)
-      @ace_value = value
-      puts "Aの値を#{value}にします。"
-    else
-      puts "Aの値を1か11どちらにしますか？"
-    end
-  end
 
   def show_score
     puts "あなたのスコアは#{score}です。"
@@ -98,7 +90,6 @@ class Player
   def score
     Score.calculate(@hand)
   end
-
 end
 
 # ディーラークラス
