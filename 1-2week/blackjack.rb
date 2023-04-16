@@ -120,25 +120,31 @@ class Dealer
 end
 
 class Score
+  #　Scoreのインスタンス
   def self.calculate(hand)
+    # 'A'を引いたときに11か1かを選ぶ
     score = 0
     aces = 0
+    # 手札を計算して得点をつける
     hand.each do |card|
+      # Aが合ったときscore+11にする、また11でバーストする時に1として扱うためにaces+1して条件をつける
       if card.include?('A')
         aces += 1
         score += 11
+      # J,Q,Kがあった場合score+10点
       elsif card.include?('J') || card.include?('Q') || card.include?('K')
         score += 10
       else
+        # それ以外の場合はカードの数値分scoreに+
         score += card.split('の')[1].to_i
       end
     end
-
-    while score > 21 && aces > 0
+    # 合計が21を超えている間はscore
+    if score > 21 && aces > 0
       score -= 10
       aces -= 1
     end
-
+    # 手札の合計を出力
     score
   end
 end
