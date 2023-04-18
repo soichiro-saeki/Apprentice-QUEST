@@ -36,11 +36,11 @@ class Deck
   def initialize
     # 山札用の空配列
     @cards = []
-    suit = %w[ハート スペード クローバー ダイヤ]
-    num = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
+    suits = %w[ハート スペード クローバー ダイヤ]
+    nums = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
     # suitと数字の組み合わせを作って配列に入れる
-    suit.each do |suit|
-      num.each do |num|
+    suits.each do |suit|
+      nums.each do |num|
         @cards << "#{suit}の#{num}"
       end
     end
@@ -60,6 +60,7 @@ class Player
     @hand = deck.draw(2)
     @ace_value = 11
   end
+
   # プレイヤーの引いたカードを表示する
   def open_hand
     puts "あなたの引いたカードは,#{@hand[0]}です。"
@@ -76,14 +77,12 @@ class Player
     while score <= 21
       puts 'カードを引きますか?(y/n)'
       answer = gets.chomp
+      return unless answer.downcase == 'y'
 
-      if answer.downcase == 'y'
-        @hand += deck.draw(1)
-        puts "あなたの引いたカードは#{@hand[-1]}です。"
-        show_score
-      else
-        return
-      end
+      @hand += deck.draw(1)
+      puts "あなたの引いたカードは#{@hand[-1]}です。"
+      show_score
+
     end
   end
 
@@ -108,8 +107,7 @@ class Dealer
   end
 
   def dealer_turn
-    while
-      dealer.score < 17
+    while dealer.score < 17
       dealer.draw(deck)
     end
   end
@@ -119,8 +117,9 @@ class Dealer
   end
 end
 
+# スコアクラス
 class Score
-  #　Scoreのインスタンス
+  # Scoreのインスタンス
   def self.calculate(hand)
     # 'A'を引いたときに11か1かを選ぶ
     score = 0
