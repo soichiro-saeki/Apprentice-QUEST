@@ -49,7 +49,7 @@ class Deck
   end
 
   # プレイヤーとディーラーがカードを引くと山札から削除する
-  def draw(n)
+  def draw
     @cards.shift(n)
   end
 end
