@@ -2,6 +2,7 @@
 
 require_relative 'bj_deck'
 require_relative 'bj_card'
+require_relative 'bj_score'
 
 # プレイヤークラス
 class Player
@@ -16,7 +17,7 @@ class Player
   end
 
   def open_hand
-    @hand.each do |card|
+    @hand.each do |hand|
       puts "あなたの引いたカードは#{hand}です"
     end
   end
@@ -41,9 +42,19 @@ end
 
 deck = Deck.new
 player1 = Player.new
-player2 = Player.new
-player3 = Player.new
+player1.draw(deck)
+score = Score.new(player1)
+puts "Player1's score: #{score.calculate}"
 
-[player1, player2, player3].each do |player|
-  player.draw(deck)
-end
+# player2 = Player.new
+# player2.draw(deck)
+# score = Score.new(player2)
+# puts "Player2's score: #{score.calculate}"
+# player3 = Player.new
+# player3.draw(deck)
+# score = Score.new(player3)
+# puts "Player3's score: #{score.calculate}"
+
+# [player1, player2, player3].each do |player|
+#   player.draw(deck)
+# end

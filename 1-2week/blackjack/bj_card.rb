@@ -15,15 +15,4 @@ class Card
   def to_s
     "#{@suit}#{@rank}"
   end
-
-  def score
-    if @rank == 'A'
-      11
-      ace_value += 1
-    elsif %w[J Q K].include?(@rank)
-      10
-    else
-      @rank.to_i
-    end
-  end
 end
