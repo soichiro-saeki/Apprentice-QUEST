@@ -15,5 +15,4 @@ class Card
   def to_s
     "#{@suit}#{@rank}"
   end
-
 end

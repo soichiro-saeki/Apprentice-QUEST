@@ -17,8 +17,8 @@ class Deck
     @cards.shuffle!
   end
 
-  # デッキからカードを一枚引く
+  # デッキからカードをn枚引いてデッキから削除する
   def draw
-    @cards.shift
+    @cards.shift(n)
   end
 end
