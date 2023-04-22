@@ -23,6 +23,8 @@ class BlackJack
       puts 'あなたの勝ちです。'
     elsif player.score < dealer.score
       puts 'ディーラーの勝ちです。'
+    elsif player.scpre == 21
+      puts "ブラックジャック!あなたの勝ちです"
     else
       puts '引き分けです。'
     end
@@ -149,4 +151,4 @@ class Score
 end
 
 puts 'ブラックジャックを始めます'
-game = BlackJack.new
+BlackJack.new
