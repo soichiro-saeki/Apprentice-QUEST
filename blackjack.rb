@@ -10,6 +10,7 @@ class BlackJack
     dealer = Dealer.new(deck)
     dealer.open_hand
     player.draw_again(deck)
+    dealer.show_score
     winner(player, dealer)
   end
 
@@ -116,6 +117,10 @@ class Dealer
 
   def draw
     @hand += @deck.draw(1)
+  end
+
+  def show_score
+    puts "ディーラーのスコアは#{score}でした。"
   end
 end
 
