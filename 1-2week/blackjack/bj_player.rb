@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
+require 'debug'
 require_relative 'bj_deck'
-require_relative 'bj_card'
-require_relative 'bj_score'
 
 # プレイヤークラス
 class Player
@@ -13,16 +12,17 @@ class Player
   end
 
   def draw(deck)
-    @hand += deck.draw(2)
+    @hand += deck.draw(1)
   end
 
+  debugger
+
   def open_hand
-    @hand.each do |hand|
+    @hand.each do |card|
+      @hand << deck.draw(2)
       puts "あなたの引いたカードは#{hand}です"
     end
   end
-
-  private
 
   def draw_again(deck)
     while score < 21
@@ -43,9 +43,11 @@ end
 deck = Deck.new
 player1 = Player.new
 player1.draw(deck)
-score = Score.new(player1)
-puts "Player1's score: #{score.calculate}"
+puts player1.draw_again(deck)
 
+# player2 = Player.new
+# player3 = Player.new
+# dealer = Player.new
 # player2 = Player.new
 # player2.draw(deck)
 # score = Score.new(player2)

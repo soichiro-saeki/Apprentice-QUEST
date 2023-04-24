@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-
+require 'debug'
 require_relative 'bj_player'
+
 
 # スコアクラス
 class Score
@@ -8,7 +9,13 @@ class Score
     @player = player
   end
 
-  private
+  def calculate
+    score = 0
+    @player.hand.each do |card|
+      score += card_value(card, score)
+    end
+    score
+  end
 
   def card_value(card, score)
     if card.rank == 'A'
@@ -28,5 +35,3 @@ class Score
     end
   end
 end
-
-

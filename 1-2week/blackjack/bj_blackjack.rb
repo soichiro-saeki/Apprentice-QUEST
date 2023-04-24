@@ -11,9 +11,9 @@ class BlackJack
   # 書くclassで定義したインスタンス初期化
   def initialize
     deck = Deck.new
-    player = Player.new(deck)
+    player = Player.new
     player.open_hand
-    dealer = Dealer.new(deck)
+    dealer = Dealer.new
     dealer.open_hand
     player.draw_again(deck)
     winner(player, dealer)
@@ -29,7 +29,7 @@ class BlackJack
       puts 'あなたの勝ちです。'
     elsif player.score < dealer.score
       puts 'ディーラーの勝ちです。'
-    elsif player.scpre == 21
+    elsif player.score == 21
       puts 'ブラックジャック!あなたの勝ちです'
     else
       puts '引き分けです。'

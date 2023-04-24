@@ -18,7 +18,8 @@ class Deck
   end
 
   # デッキからカードをn枚引いてデッキから削除する
-  def draw
+  # n枚引くので引数はあえてnを指定する
+  def draw(n)
     @cards.shift(n)
   end
 end

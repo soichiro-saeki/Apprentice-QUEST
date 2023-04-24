@@ -1,25 +1,36 @@
 # frozen_string_literal: true
+
 require_relative 'bl_player'
 require_relative 'bl_deck'
 require_relative 'bl_card'
 
+# ディーラークラス
+class Dealer
 
-calss Dealer < Player
-  def dealer_show
-    puts "ディーラーの手札は#{@hand[0]}です"
-    puts 'ディーラーの引いた2枚目のカードは分かりません'
+  def initialize
+    @hand = []
   end
 
-  def dealer_draw_again(deck)
-    while score < 17
-      @hand += deck.draw(1)
+  def open_hand
+    @hand = deck.draw(2)
+      puts "ディーラーの引いたカードは#{hand[0]}です"
+      puts "ディーラーが引いた2枚目のカードは分かりません。"
+  end
+
+  def draw_again(deck)
+    while score < 17 ; hand += deck.draw(1)
     end
   end
 
-  def dealer_show_all
-    @hand.each do |card|
-    puts "ディーラーの手札は#{@hand}です"
+  def dealer_show
+    answer = self == player1 ? gets.chomp : 'y'
+    if answer
+    puts "ディーラーの引いたカードは#{hand[1]}でした。"
   end
 
-
+  def dealer_show_all
+    @hand.each do |hand|
+      puts "ディーラーの手札は#{@hand}です"
+    end
+  end
 end
