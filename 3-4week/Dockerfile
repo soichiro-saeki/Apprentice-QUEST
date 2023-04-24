@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:2.7.8
 # var/wwwディレクトリを作成
 RUN mkdir /var/www
 # var/wwwディレクトリにコピー
