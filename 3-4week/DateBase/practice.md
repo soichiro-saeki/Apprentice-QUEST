@@ -1,3 +1,7 @@
+## SQLShellでのroot権限でサーバー接続
+```
+\connect root@localhost:3306
+```
 ## データベースの作成
 ```
 CREATE DATABASE (データベース名)　
