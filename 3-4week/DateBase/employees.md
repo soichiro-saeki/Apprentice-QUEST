@@ -11,6 +11,7 @@ sourceコマンドでemployee.sqlのファイルを実行する。
 mysqldump -u [username] -p[password] employees > employees_dump.sql
 ```
 ## テーブル一覧
+```
 +----------------------+
 | Tables_in_employees  |
 +----------------------+
@@ -24,7 +25,16 @@ mysqldump -u [username] -p[password] employees > employees_dump.sql
 | titles               |
 +----------------------+
 
-
+show columns from dept_manager;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| emp_no    | int     | NO   | PRI | NULL    |       |
+| dept_no   | char(4) | NO   | PRI | NULL    |       |
+| from_date | date    | NO   |     | NULL    |       |
+| to_date   | date    | NO   |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+```
 
 
 
