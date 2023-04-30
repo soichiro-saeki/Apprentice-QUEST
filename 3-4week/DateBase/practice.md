@@ -22,4 +22,58 @@ GRANT ALL PRIVILEGES ON mydb. * TO 'myuser'@'localhost';　
 # ユーザーを削除
 DROP USER'myuser'@'localhost';
  ```
- 
+ ## テーブルを作成
+ ```
+ CREATE TABLE user(
+ id int,
+ username varchar(255),
+ email varchar(255),
+ password char(30)
+ );
+ ```
+ ## テーブルを削除
+ ```
+ drop table user;
+ ```
+ ## カラム追加
+ ```
+ ALTER TABLE テーブル名 ADD (新規カラム名１ 型情報, 新規カラム名２ 型情報, ...);
+ ```
+ ## カラム一覧表示
+ ```
+ show columns from テーブル名;
+ ```
+ ## カラム削除
+ ```
+ ALTER TABLE テーブル名 DROP　カラム名
+ ```
+ ## テーブルの再作成
+```
+DROP TABLE users;
+CREATE TABLE users 
+``` 
+
+## データの登録
+```
+INSERT INTO user (id, username, email, password)
+VALUES('001','aaa','aaa@gmail.com','aaa');
+```
+
+## データの検索
+```
+SELECT username FROM user;
+```
+
+## データの更新
+```
+UPDATE users
+SET name = 'bbb', email = 'bbb@gmail.com'
+WHERE id = '0001';
+```
+
+## データの削除
+```
+DELETE FROM users
+WHERE id = '0001';
+```
+
