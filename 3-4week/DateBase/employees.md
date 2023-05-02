@@ -1,5 +1,5 @@
 ## employee dataのインストール手順
-https://github.com/datacharmer/test_dbより、downloadZipをダウンロードする。  
+https://github.com/datacharmer/test_db より、downloadZipをダウンロードする。  
 保存したいディレクトリで解凍する。  
 sourceコマンドでemployee.sqlのファイルを実行する。  
 その後ダンプファイルもsourceコマンドで実行し、データベースにデータを挿入する。
