@@ -3,7 +3,7 @@ https://github.com/datacharmer/test_db より、downloadZipをダウンロード
 保存したいディレクトリで解凍する。  
 sourceコマンドでemployee.sqlのファイルを実行する。  
 その後ダンプファイルもsourceコマンドで実行し、データベースにデータを挿入する。
-
+ employees  SQL > source C:\Users\***\test_db-master\load_salaries3.dump;
 
 
 ## ダンプファイルの作成方法
