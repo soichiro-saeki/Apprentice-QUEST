@@ -47,7 +47,7 @@ SELECT COUNT(*) FROM salaries;
 |      103344 |
 +-------------+
 
-1991年6月26日代謝の
+1991年6月26日が最終給与の人の平均給与を小数点1桁までで取得
 SELECT ROUND(AVG(salary),1) FROM salaries WHERE to_date = '1991-06-26';
 +----------------------+
 | ROUND(AVG(salary),1) |
