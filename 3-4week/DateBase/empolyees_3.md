@@ -32,11 +32,55 @@
 | 111939 | d009    | 1996-01-03 | 9999-01-01 | 111939 | d009    | 1989-07-10 | 9999-01-01 |
 +--------+---------+------------+------------+--------+---------+------------+------------+
 
-部署ごとに、
-部署番号 (departmentsテーブルのdept_no)
-歴代のマネージャーの従業員番号(
-マネージャーのファーストネーム
-マネージャーのラストネームを取得してください。
+部署ごとに、部署番号、歴代のマネージャーの従業員番号、マネージャーのファーストネーム、マネージャーのラストネームを取得  
+・部署番号   
+  departmentsテーブルのdept_no   
+・歴代のマネージャーの従業員番号  
+  dpte_managerテーブルのemp_no　              
+・マネージャーのファーストネーム　(employees)               
+　 employeesテーブルのfirst_name  
+・マネージャーのラストネームを取得してください。(employees) 　
+　 employeesテーブルのlast_name  
+・departmentsテーブルをdに命名  
+・dpte_managerテーブルをdmに命名  
+・employeesテーブルをeに命名  
 
+SELECT d.dept_no, dm.emp_no, e.first_name, e.last_name
+FROM departments d 　　　　
+JOIN dept_manager dm　　　
+ON d.dept_no = dm.dept_no
+JOIN employees e 
+ON dm.emp_no = e.emp_no
+ORDER BY d.dept_no;
+　　
+     d        dm         e               e
++---------+--------+-------------+--------------+
+| dept_no | emp_no | first_name  | last_name    |
++---------+--------+-------------+--------------+
+| d001    | 110022 | Margareta   | Markovitch   |
+| d001    | 110039 | Vishwani    | Minakawa     |
+| d002    | 110085 | Ebru        | Alpin        |
+| d002    | 110114 | Isamu       | Legleitner   |
+| d003    | 110183 | Shirish     | Ossenbruggen |
+| d003    | 110228 | Karsten     | Sigstam      |
+| d004    | 110303 | Krassimir   | Wegerle      |
+| d004    | 110344 | Rosine      | Cools        |
+| d004    | 110386 | Shem        | Kieras       |
+| d004    | 110420 | Oscar       | Ghazalie     |
+| d005    | 110511 | DeForest    | Hagimont     |
+| d005    | 110567 | Leon        | DasSarma     |
+| d006    | 110725 | Peternela   | Onuegbe      |
+| d006    | 110765 | Rutger      | Hofmeyr      |
+| d006    | 110800 | Sanjoy      | Quadeer      |
+| d006    | 110854 | Dung        | Pesch        |
+| d007    | 111035 | Przemyslawa | Kaelbling    |
+| d007    | 111133 | Hauke       | Zhang        |
+| d008    | 111400 | Arie        | Staelin      |
+| d008    | 111534 | Hilary      | Kambil       |
+| d009    | 111692 | Tonny       | Butterworth  |
+| d009    | 111784 | Marjo       | Giarratana   |
+| d009    | 111877 | Xiaobin     | Spinelli     |
+| d009    | 111939 | Yuchang     | Weedman      |
++---------+--------+-------------+--------------+
 
 
