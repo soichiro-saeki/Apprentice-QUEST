@@ -1,12 +1,14 @@
+--db作成　重複していない場合に作成
 CREATE DATABASE IF NOT EXISTS `internet_tv_service`;
 
 USE `internet_tv_service`;
-
+--チャンネルテーブル作成
 CREATE TABLE IF NOT EXISTS `channels` (
   `channel_id` INT AUTO_INCREMENT PRIMARY KEY,
   `channel_name` VARCHAR(255) NOT NULL
 );
 
+--プログラムテーブル
 CREATE TABLE IF NOT EXISTS `program_slots` (
   `program_slot_id` INT AUTO_INCREMENT PRIMARY KEY,
   `channel_id` INT NOT NULL,
