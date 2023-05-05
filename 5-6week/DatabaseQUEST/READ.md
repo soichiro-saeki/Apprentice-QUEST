@@ -36,21 +36,70 @@
 </details>
 
 ### 2.データベースとテーブル設計
-ではエンティティの定義に基づきでーたベースの設計を行います。
+ではエンティティの定義に基づきデータベースの設計を行います。
 <details>
-  <summary>
-    データベースとテーブルを作成するSQL文です。
-  </summary>
+<summary>チャンネルテーブル</summary>  
+  
+| Field        | Type         | Null | Key | Default |               Extra|     
+|--------------|--------------|------|-----|---------|--------------------|
+| channel_id   | int          | NO   | PRI | NULL    |      auto_increment|
+| channel_name | varchar(255) | NO   |     | NULL    |                    |
+
+</details>  
+<details>
+  <summary>エピソードテーブル</summary>
+  
+| Field           | Type         | Null | Key | Default | Extra          |
+|-----------------|--------------|------|-----|---------|----------------|
+| episode_id      | int          | NO   | PRI | NULL    | auto_increment |
+| season_id       | int          | NO   | MUL | NULL    |                |
+| episode_number  | int          | NO   |     | NULL    |                |
+| title           | varchar(255) | NO   |     | NULL    |                |
+| episode_details | text         | YES  |     | NULL    |                |
+| video_length    | time         | NO   |     | NULL    |                |
+| release_date    | date         | NO   |     | NULL    |                |
+
+</details>  
+
+<details>
+  <summary>番組枠テーブル</summary>  
+
+| Field           | Type | Null | Key | Default | Extra          |
+|-----------------|------|------|-----|---------|----------------|
+| program_slot_id | int  | NO   | PRI | NULL    | auto_increment |
+| channel_id      | int  | NO   | MUL | NULL    |                |
+| time_slot       | time | NO   |     | NULL    |                |
+
+</details>
+ 
+<details>
+  <summary> 番組テーブル </summary>  
+
+| Field           | Type         | Null | Key | Default | Extra          |
+|-----------------|--------------|------|-----|---------|----------------|
+| program_id      | int          | NO   | PRI | NULL    | auto_increment |
+| program_name    | varchar(255) | NO   |     | NULL    |                |
+| program_details | text         | YES  |     | NULL    |                |
+| genre           | varchar(255) | NO   |     | NULL    |                |
+
+</details>
+
+<details>
+  <summary>シーズンテーブル</summary>
+  
+| Field         | Type | Null | Key | Default | Extra          |
+|---------------|------|------|-----|---------|----------------|
+| season_id     | int  | NO   | PRI | NULL    | auto_increment |
+| program_id    | int  | NO   | MUL | NULL    |                |
+| season_number | int  | NO   |     | NULL    |                |
+
 </details>  
 
 ### 3.MySQLでデータベースとテーブルを作成
-<details>
-  <summary>
-    
-  </summary>
-  
-  SQLファイルを実行してください。
-</details>  
+creaternet_tv_service_table.sqlを保存したディレクトリから実行してください。
+```
+source C:\Users\creaternet_tv_service_table.sql
+```
 
 ### 4.データベースにデータを格納
 
