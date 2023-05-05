@@ -98,10 +98,11 @@
 ### 3.MySQLでデータベースとテーブルを作成
 creaternet_tv_service_table.sqlを保存したディレクトリから実行してください。
 ```
-source C:\Users\creaternet_tv_service_table.sql
+source C:\Users\..\creaternet_tv_service_table.sql
 ```
 
 ### 4.データベースにデータを格納
+chatGPTなどのAIchatにデータを作成してもらっても構いませんが、こちらで用意しているdumpファイルを実行していただいても結構です。
 
 ### 5.データベースのステートメント確認
 
