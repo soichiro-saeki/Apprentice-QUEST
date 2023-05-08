@@ -11,7 +11,7 @@ CREATE TABLE channels (
 -- programs テーブルを作成
 CREATE TABLE programs (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL　UNIQUE,
     description TEXT,
     genre VARCHAR(255)
 );
