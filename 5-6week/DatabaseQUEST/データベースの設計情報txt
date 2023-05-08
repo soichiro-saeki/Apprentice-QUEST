@@ -1,0 +1,38 @@
+channels テーブル: チャンネルに関する情報を保存します。
+id: チャンネルのID (主キー)
+name: チャンネル名
+
+programs テーブル: 番組に関する情報を保存します。
+id: 番組のID (主キー)
+title: 番組名
+description: 番組詳細
+genre: ジャンル
+
+seasons テーブル, シーズンに関する情報を保存します。
+id: シーズンのID (主キー)
+number: シーズン番号
+program_id: 番組のID (外部キー)
+
+episodes テーブル: エピソードに関する情報を保存します。
+id: エピソードのID (主キー)
+number: エピソード番号
+title: エピソードタイトル
+description: エピソード詳細
+duration: 動画時間
+air_date: 公開日
+views: 視聴数
+season_id: シーズンのID (外部キー)
+programs_id:プログラムのID(外部キー）
+
+schedules テーブル: スケジュールに関する情報を保存します。
+id: スケジュールのID (主キー)
+start_time: 放送開始時刻
+end_time: 放送終了時刻
+channel_id: チャンネルのID (外部キー)
+episode_id: エピソードのID (外部キー)
+
+
+
+viewingテーブルから定期的にepisodeテーブルのviewsに値を入れて視聴回数を更新するクエリ
+UPDATE episodes
+SET views = (SELECT COUNT(*) FROM viewings WHERE viewings.episode_id = episodes.id);
