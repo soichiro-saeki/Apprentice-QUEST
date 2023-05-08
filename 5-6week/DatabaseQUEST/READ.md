@@ -9,17 +9,17 @@
 
 こちらのドキュメントはデータベース設計の流れを一緒に理解し、実際にデータベースの構築を行う手順を記載してます。
 
-手順としては下記手順で進めます。データベースの構築のみ行いたい方は3番から進めてください。  
-- エンティティの定義  
-- エンティティの定義に基づきテーブル設計を行う。※第3正規形になるようにする。  
-- 実際にMySQLにてデータベースの作成とテーブルの作成を行う。  
-- chatGPTなどAIchatからデータを作成し、データベースにデータを格納する。※dumpファイルからインポートする。  
+手順としては下記手順で進めます。データベースの構築のみ行いたい方は3番から進めてください。
+- エンティティの定義
+- エンティティの定義に基づきテーブル設計を行う。※第3正規形になるようにする。
+- 実際にMySQLにてデータベースの作成とテーブルの作成を行う。
+- chatGPTなどAIchatからデータを作成し、データベースにデータを格納する。※dumpファイルからインポートする。
 - データベースが設計通りにできているか確認する。
 
 ### 1.エンティティの定義
 まずはエンティティの定義をします。
 <details>
-    <summary> 
+    <summary>
       エンティティの定義の方法について確認したい方
     </summary>
 channels テーブル: チャンネルに関する情報を保存します。<br>
@@ -60,19 +60,19 @@ episode_id: エピソードのID (外部キー)<br>
 ### 2.データベースとテーブル設計
 ではエンティティの定義に基づきデータベースの設計を行います。
 <details>
-<summary>チャンネルテーブル</summary>  
+<summary>チャンネルテーブル</summary>
   channelsテーブル
 
 | Field | Type         | Null | Key | Default | Extra          |
 |-------|--------------|------|-----|---------|----------------|
 | id    | int          | NO   | PRI | NULL    | auto_increment |
 | name  | varchar(255) | NO   |     | NULL    |                |
-</details>  
+</details>
 
 <details>
-<summary> 番組テーブル </summary>  
+<summary> 番組テーブル </summary>
   programsテーブル
-  
+
 | Field       | Type         | Null | Key | Default | Extra          |
 |-------------|--------------|------|-----|---------|----------------|
 | id          | int          | NO   | PRI | NULL    | auto_increment |
@@ -84,18 +84,18 @@ episode_id: エピソードのID (外部キー)<br>
 <details>
 <summary>シーズンテーブル</summary>
   seasonsテーブル
-  
+
 | Field      | Type | Null | Key | Default | Extra          |
 |------------|------|------|-----|---------|----------------|
 | id         | int  | NO   | PRI | NULL    | auto_increment |
 | number     | int  | NO   |     | NULL    |                |
 | program_id | int  | NO   | MUL | NULL    |                |
-</details>  
+</details>
 
 <details>
 <summary>エピソードテーブル</summary>
   episodesテーブル
-  
+
 | Field       | Type         | Null | Key | Default | Extra          |
 |-------------|--------------|------|-----|---------|----------------|
 | id          | int          | NO   | PRI | NULL    | auto_increment |
@@ -106,33 +106,33 @@ episode_id: エピソードのID (外部キー)<br>
 | air_date    | date         | NO   |     | NULL    |                |
 | views       | int          | NO   |     | 0       |                |
 | season_id   | int          | YES  | MUL | NULL    |                |
-| programs_id | int          | YES  | MUL | NULL    |                |  
-</details>  
+| programs_id | int          | YES  | MUL | NULL    |                |
+</details>
 
 <details>
-<summary>スケジュールテーブル</summary>  
+<summary>スケジュールテーブル</summary>
   schedulesテーブル
-  
+
 | Field      | Type     | Null | Key | Default | Extra          |
 |------------|----------|------|-----|---------|----------------|
 | id         | int      | NO   | PRI | NULL    | auto_increment |
 | start_time | datetime | NO   |     | NULL    |                |
 | end_time   | datetime | NO   |     | NULL    |                |
 | channel_id | int      | NO   | MUL | NULL    |                |
-| episode_id | int      | NO   | MUL | NULL    |                |  
+| episode_id | int      | NO   | MUL | NULL    |                |
 </details>
- 
+
 <details>
-<summary>視聴時間</summary>
+<summary>視聴日時</summary>
   viewingsテーブル
 
 | Field      | Type     | Null | Key | Default | Extra          |
 |------------|----------|------|-----|---------|----------------|
 | id         | int      | NO   | PRI | NULL    | auto_increment |
 | episode_id | int      | NO   | MUL | NULL    |                |
-| viewed_at  | datetime | NO   |     | NULL    |                |  
+| viewed_at  | datetime | NO   |     | NULL    |                |
 
-</details>  
+</details>
 
 ### 3.MySQLでデータベースとテーブルを作成
 create_nettv_table.sqlを保存したディレクトリから実行してください。
@@ -158,6 +158,3 @@ net_tv_data.dump
 | schedules            |
 | seasons              |
 | viewings             |
-
-
-
