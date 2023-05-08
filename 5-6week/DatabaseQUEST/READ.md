@@ -22,38 +22,38 @@
     <summary> 
       エンティティの定義の方法について確認したい方
     </summary>
-channels テーブル: チャンネルに関する情報を保存します。
-id: チャンネルのID (主キー)
-name: チャンネル名
-
-programs テーブル: 番組に関する情報を保存します。
-id: 番組のID (主キー)
-title: 番組名
-description: 番組詳細
-genre: ジャンル
-
-seasons テーブル, シーズンに関する情報を保存します。
-id: シーズンのID (主キー)
-number: シーズン番号
-program_id: 番組のID (外部キー)
-
-episodes テーブル: エピソードに関する情報を保存します。
-id: エピソードのID (主キー)
-number: エピソード番号
-title: エピソードタイトル
-description: エピソード詳細
-duration: 動画時間
-air_date: 公開日
-views: 視聴数
-season_id: シーズンのID (外部キー)
-programs_id:プログラムのID(外部キー）
-
-schedules テーブル: スケジュールに関する情報を保存します。
-id: スケジュールのID (主キー)
-start_time: 放送開始時刻
-end_time: 放送終了時刻
-channel_id: チャンネルのID (外部キー)
-episode_id: エピソードのID (外部キー)
+channels テーブル: チャンネルに関する情報を保存します。<br>
+id: チャンネルのID (主キー)  <br>
+name: チャンネル名  <br>
+<br>
+programs テーブル: 番組に関する情報を保存します。<br>
+id: 番組のID (主キー)<br>
+title: 番組名<br>
+description: 番組詳細<br>
+genre: ジャンル<br>
+<br>
+seasons テーブル, シーズンに関する情報を保存します。<br>
+id: シーズンのID (主キー)<br>
+number: シーズン番号<br>
+program_id: 番組のID (外部キー)<br>
+<br>
+episodes テーブル: エピソードに関する情報を保存します。<br>
+id: エピソードのID (主キー)<br>
+number: エピソード番号<br>
+title: エピソードタイトル<br>
+description: エピソード詳細<br>
+duration: 動画時間<br>
+air_date: 公開日<br>
+views: 視聴数<br>
+season_id: シーズンのID (外部キー)<br>
+programs_id:プログラムのID(外部キー）<br>
+<br>
+schedules テーブル: スケジュールに関する情報を保存します。<br>
+id: スケジュールのID (主キー)<br>
+start_time: 放送開始時刻<br>
+end_time: 放送終了時刻<br>
+channel_id: チャンネルのID (外部キー)<br>
+episode_id: エピソードのID (外部キー)<br>
 
 </details>
 
@@ -61,70 +61,103 @@ episode_id: エピソードのID (外部キー)
 ではエンティティの定義に基づきデータベースの設計を行います。
 <details>
 <summary>チャンネルテーブル</summary>  
-  
-| Field        | Type         | Null | Key | Default |               Extra|     
-|--------------|--------------|------|-----|---------|--------------------|
-| channel_id   | int          | NO   | PRI | NULL    |      auto_increment|
-| channel_name | varchar(255) | NO   |     | NULL    |                    |
+  channelsテーブル
 
-</details>  
-<details>
-  <summary>エピソードテーブル</summary>
-  
-| Field           | Type         | Null | Key | Default | Extra          |
-|-----------------|--------------|------|-----|---------|----------------|
-| episode_id      | int          | NO   | PRI | NULL    | auto_increment |
-| season_id       | int          | NO   | MUL | NULL    |                |
-| episode_number  | int          | NO   |     | NULL    |                |
-| title           | varchar(255) | NO   |     | NULL    |                |
-| episode_details | text         | YES  |     | NULL    |                |
-| video_length    | time         | NO   |     | NULL    |                |
-| release_date    | date         | NO   |     | NULL    |                |
-
+| Field | Type         | Null | Key | Default | Extra          |
+|-------|--------------|------|-----|---------|----------------|
+| id    | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255) | NO   |     | NULL    |                |
 </details>  
 
 <details>
-  <summary>番組枠テーブル</summary>  
+<summary> 番組テーブル </summary>  
+  programsテーブル
+  
+| Field       | Type         | Null | Key | Default | Extra          |
+|-------------|--------------|------|-----|---------|----------------|
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| title       | varchar(255) | NO   | UNI | NULL    |                |
+| description | text         | YES  |     | NULL    |                |
+| genre       | varchar(255) | YES  |     | NULL    |                |
+</details>
 
-| Field           | Type | Null | Key | Default | Extra          |
-|-----------------|------|------|-----|---------|----------------|
-| program_slot_id | int  | NO   | PRI | NULL    | auto_increment |
-| channel_id      | int  | NO   | MUL | NULL    |                |
-| time_slot       | time | NO   |     | NULL    |                |
+<details>
+<summary>シーズンテーブル</summary>
+  seasonsテーブル
+  
+| Field      | Type | Null | Key | Default | Extra          |
+|------------|------|------|-----|---------|----------------|
+| id         | int  | NO   | PRI | NULL    | auto_increment |
+| number     | int  | NO   |     | NULL    |                |
+| program_id | int  | NO   | MUL | NULL    |                |
+</details>  
 
+<details>
+<summary>エピソードテーブル</summary>
+  episodesテーブル
+  
+| Field       | Type         | Null | Key | Default | Extra          |
+|-------------|--------------|------|-----|---------|----------------|
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| number      | int          | NO   |     | NULL    |                |
+| title       | varchar(255) | NO   |     | NULL    |                |
+| description | text         | YES  |     | NULL    |                |
+| duration    | time         | NO   |     | NULL    |                |
+| air_date    | date         | NO   |     | NULL    |                |
+| views       | int          | NO   |     | 0       |                |
+| season_id   | int          | YES  | MUL | NULL    |                |
+| programs_id | int          | YES  | MUL | NULL    |                |  
+</details>  
+
+<details>
+<summary>スケジュールテーブル</summary>  
+  schedulesテーブル
+  
+| Field      | Type     | Null | Key | Default | Extra          |
+|------------|----------|------|-----|---------|----------------|
+| id         | int      | NO   | PRI | NULL    | auto_increment |
+| start_time | datetime | NO   |     | NULL    |                |
+| end_time   | datetime | NO   |     | NULL    |                |
+| channel_id | int      | NO   | MUL | NULL    |                |
+| episode_id | int      | NO   | MUL | NULL    |                |  
 </details>
  
 <details>
-  <summary> 番組テーブル </summary>  
+<summary>視聴時間</summary>
+  viewingsテーブル
 
-| Field           | Type         | Null | Key | Default | Extra          |
-|-----------------|--------------|------|-----|---------|----------------|
-| program_id      | int          | NO   | PRI | NULL    | auto_increment |
-| program_name    | varchar(255) | NO   |     | NULL    |                |
-| program_details | text         | YES  |     | NULL    |                |
-| genre           | varchar(255) | NO   |     | NULL    |                |
-
-</details>
-
-<details>
-  <summary>シーズンテーブル</summary>
-  
-| Field         | Type | Null | Key | Default | Extra          |
-|---------------|------|------|-----|---------|----------------|
-| season_id     | int  | NO   | PRI | NULL    | auto_increment |
-| program_id    | int  | NO   | MUL | NULL    |                |
-| season_number | int  | NO   |     | NULL    |                |
+| Field      | Type     | Null | Key | Default | Extra          |
+|------------|----------|------|-----|---------|----------------|
+| id         | int      | NO   | PRI | NULL    | auto_increment |
+| episode_id | int      | NO   | MUL | NULL    |                |
+| viewed_at  | datetime | NO   |     | NULL    |                |  
 
 </details>  
 
 ### 3.MySQLでデータベースとテーブルを作成
-creaternet_tv_service_table.sqlを保存したディレクトリから実行してください。
+create_nettv_table.sqlを保存したディレクトリから実行してください。
 ```
-source C:\Users\..\creaternet_tv_service_table.sql
+source C:\Users\..\create_nettv_table.sql
 ```
 
 ### 4.データベースにデータを格納
 chatGPTなどのAIchatにデータを作成してもらっても構いませんが、こちらで用意しているdumpファイルを実行していただいても結構です。
 
+```
+net_tv_data.dump
+```
+
 ### 5.データベースのスキーマの確認
+それぞれのテーブルをDESCRIBE [table名];で設計通りにできているか確認してください。
+
+| Tables_in_nettv_show |
+|----------------------|
+| channels             |
+| episodes             |
+| programs             |
+| schedules            |
+| seasons              |
+| viewings             |
+
+
 
