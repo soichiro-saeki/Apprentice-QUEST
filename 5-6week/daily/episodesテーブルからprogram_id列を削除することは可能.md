@@ -1,5 +1,5 @@
 
-### 設計時にUNIQUEキーを設定し忘れていたので、UNIQキーをテーブルに追加した。
+### 設計時にUNIQUEキーを設定し忘れていたので、UNIQEキーをテーブルに追加した。
 ```
 -- programs テーブルを作成
 CREATE TABLE programs (
