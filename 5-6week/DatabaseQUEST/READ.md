@@ -158,3 +158,6 @@ net_tv_data.dump
 | schedules            |
 | seasons              |
 | viewings             |
+
+
+STEP3は[こちら](https://github.com/soichiro-saeki/Apprentice-QUEST/blob/master/5-6week/DatabaseQUEST/STEP3.md)
