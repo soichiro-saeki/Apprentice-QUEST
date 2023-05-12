@@ -52,6 +52,7 @@
   ⑥日報作成したことをslackで通知したい。<br>
 </detailes>
 
+aaa
 
 <details>
  <summary>非機能要件</summary>
