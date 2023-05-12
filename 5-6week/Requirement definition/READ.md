@@ -50,9 +50,7 @@
   ④ダッシュボードから日報のリンクに飛んだり、受注率が一目でわかること。<br>
   ⑤外出先からも確認できる <br>
   ⑥日報作成したことをslackで通知したい。<br>
-</detailes>
-
-aaa
+</details>
 
 <details>
  <summary>非機能要件</summary>
