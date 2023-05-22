@@ -1,5 +1,5 @@
 -- データベースを作成
-CREATE DATABASE nettv_show;
+CREATE DATABASE  IF NOT EXISTS nettv_show;
 USE nettv_show;
 
 -- channels テーブルを作成
